@@ -4,7 +4,7 @@ public class EstudianteDto {
 
     private String nombre;
     private String apellido;
-    private String[] listaCursos;
+    private String[] cursos;
 
     public String getNombre() {
         return nombre;
@@ -23,11 +23,11 @@ public class EstudianteDto {
     }
 
     public String[] getCursos() {
-        return listaCursos;
+        return cursos;
     }
 
-    public void setCursos(String[] listaCursos) {
-        this.listaCursos = listaCursos;
+    public void setCursos(String[] cursos) {
+        this.cursos = cursos;
     }
 
 }

@@ -39,11 +39,11 @@ public class JdbcEstudiantes implements Estudiantes {
 
     @Override
     public void crearEstudiante(String nombre, String apellido,
-                                String[] listaCursos) {
+                                String[] cursos) {
 
         Estudiante e = new Estudiante(nombre, apellido);
 
         System.out.println(e.toString());
-        System.out.println(listaCursos);
+        System.out.println(cursos);
     }
 }

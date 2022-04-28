@@ -8,6 +8,6 @@ public interface Estudiantes {
 
     List<Estudiante> estudiantes(String apellido);
 
-    void crearEstudiante(String nombre, String apellido, String[] listaCursos);
+    void crearEstudiante(String nombre, String apellido, String[] cursos);
 
 }

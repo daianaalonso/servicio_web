@@ -40,7 +40,6 @@ public class WebAPI {
         });
 
         app.exception(Exception.class, (e, ctx) -> {
-            e.printStackTrace();
             ctx.json(Map.of("result", "error", "message", "Ups... algo se rompió.: " + e.getMessage()));
             // log error in a stream...
         });
@@ -78,7 +77,6 @@ public class WebAPI {
             }
 
             ctx.json(Map.of("result", "success", "estudiantes", list));
-
         };
     }
 }
