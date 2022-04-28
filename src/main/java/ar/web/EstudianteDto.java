@@ -26,8 +26,8 @@ public class EstudianteDto {
         return listaCursos;
     }
 
-    public void setCursos(String[] cursos) {
-        this.listaCursos = cursos;
+    public void setCursos(String[] listaCursos) {
+        this.listaCursos = listaCursos;
     }
 
 }
