@@ -13,21 +13,27 @@ public class Estudiante {
     private List<Curso> cursos;
 
     public Estudiante(String nombre, String apellido) {
-        this.nombre = new NotNullNotEmpty(nombre).value();
-        this.apellido = new NotNullNotEmpty(apellido).value();
+        var check = new NotNullNotEmpty("nombre", nombre, "apellido", apellido);
+        check.throwOnError();
+
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.cursos = new ArrayList<>();
     }
 
     public void addCurso(String curso) {
-        this.cursos.add(new Curso(new NotNullNotEmpty(curso).value()));
+        var check = new NotNullNotEmpty("curso", curso);
+        check.throwOnError();
+
+        this.cursos.add(new Curso(curso));
     }
 
     public void addCursos(String[] nombresCursos) {
 
-        String[] cursos = new NotNullNotEmpty(nombresCursos).values();
+        String[] cursos = nombresCursos;
 
-        var cur = List.of(cursos).stream().map((n) -> {
-            return new Curso(n);
+        var cur = List.of(cursos).stream().map((c) -> {
+            return new Curso(c);
         }).collect(Collectors.toList());
 
         this.cursos.addAll(cur);

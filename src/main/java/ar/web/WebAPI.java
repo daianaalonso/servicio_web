@@ -35,7 +35,7 @@ public class WebAPI {
         app.post("/estudiantes", crearEstudiante());
 
         app.exception(EstudianteException.class, (e, ctx) -> {
-            ctx.json(Map.of("result", "error", "message", e.getMessage()));
+            ctx.json(Map.of("result", "error", "errors", e.toMap()));
             // log error in a stream...
         });
 

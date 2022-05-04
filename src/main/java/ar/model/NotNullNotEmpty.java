@@ -1,39 +1,50 @@
 package ar.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class NotNullNotEmpty {
 
     private static final String MSG = "Envíe un valor distinto de nulo o vacío";
-    public String value;
-    public String[] values;
+    private Map<String, String> errors = new HashMap<>();
 
-    public NotNullNotEmpty(String value) {
-        if (value == null)
-            throw new EstudianteException(MSG);
-        if (value.isEmpty())
-            throw new EstudianteException(MSG);
-        if (value.isBlank())
-            throw new EstudianteException(MSG);
-        this.value = value;
+    private boolean nullOrEmpty(String value) {
+        return value == null || value.isEmpty() || value.isBlank();
     }
 
-    public NotNullNotEmpty(String[] values) {
-        if (values == null) {
-            throw new EstudianteException(MSG);
+    public NotNullNotEmpty(String k1, String v1) {
+        if (nullOrEmpty(v1)) {
+            this.errors.put(k1, MSG);
         }
-        if (values.length == 0) {
-            throw new EstudianteException(MSG);
-        }
-        if (values[0] == null || values[0].isBlank() || values[0].isEmpty()) {
-            throw new EstudianteException(MSG);
-        }
-        this.values = values;
     }
 
-    public String value() {
-        return this.value;
+    public NotNullNotEmpty(String k1, String v1, String k2,
+                           String v2) {
+        if (nullOrEmpty(v1)) {
+            this.errors.put(k1, MSG);
+        }
+
+        if (nullOrEmpty(v2)) {
+            this.errors.put(k2, MSG);
+        }
     }
 
-    public String[] values() {
-        return this.values;
+    public void throwOnError() {
+        if (this.hasErrors()) {
+            throw new EstudianteException(this.toMap());
+        }
+    }
+
+    private boolean nullOrEmpty(String[] numeros) {
+        return numeros == null || numeros.length == 0 || numeros[0] == null
+                || numeros[0].isBlank() || numeros[0].isEmpty();
+    }
+
+    private boolean hasErrors() {
+        return !this.errors.isEmpty();
+    }
+
+    private Map<String, String> toMap() {
+        return Map.copyOf(this.errors);
     }
 }
